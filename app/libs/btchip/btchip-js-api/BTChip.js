@@ -526,6 +526,10 @@ var BTChip = Class.create({
         var currentObject = this;
         var deferred = Q.defer();
 
+        console.log("Get trusted input");
+        console.log(indexLookup);
+        console.log(transaction);
+
         var notifyInputIndex = 0;
         var notifyOutputIndex = 0;
         var notifyInputsCount = transaction['inputs'].length;
@@ -620,6 +624,7 @@ var BTChip = Class.create({
                             processExtraData();
                         }
                         else {
+                            console.log("Using trusted input " + result.toString(HEX));
                             deferred.resolve(result);
                         }
                     }).fail(function (err) {
@@ -630,6 +635,7 @@ var BTChip = Class.create({
         }
         var processExtraData = function() {
             processScriptBlocks(transaction['extraData']).then(function (result) {
+                console.log("Using trusted input " + result.toString(HEX));
                 deferred.resolve(result);
             }).fail(function (err) {
                 deferred.reject(err);
@@ -1199,6 +1205,8 @@ var BTChip = Class.create({
 
         // Implementation starts here
 
+        console.log("CREATE PAYMENT TRANSACTION NEW -- BITCOIN --");
+
         // Inputs are provided as arrays of [transaction, output_index, optional redeem script]
         // associatedKeysets are provided as arrays of [path]
         var defaultVersion = new ByteString("01000000", HEX);
@@ -1430,6 +1438,10 @@ console.log("Signed TX " + result.toString(HEX));
 
 
     getTrustedInputBitcoinCash_async: function (indexLookup, transaction) {
+        console.log("Get trusted input");
+        console.log(indexLookup);
+        console.log(transaction);
+        
         sha = new JSUCrypt.hash.SHA256();
         hash = sha.finalize(this.serializeTransaction(transaction).toString(HEX));        
         hash = new ByteString(JSUCrypt.utils.byteArrayToHexStr(hash), HEX)
@@ -1439,6 +1451,7 @@ console.log("Signed TX " + result.toString(HEX));
         hash = hash.concat(new ByteString(data, HEX));
         hash = hash.concat(transaction.outputs[indexLookup]['amount']);
         return Q.fcall(function() {
+            console.log("Using trusted input " + hash.toString(HEX));
             return hash;
         });
     },
@@ -1486,6 +1499,8 @@ console.log("Signed TX " + result.toString(HEX));
 
     createPaymentTransactionNewBitcoinCash_async: function(inputs, associatedKeysets, changePath, outputScript, lockTime, sighashType, authorization, resumeData) {
         // Implementation starts here
+
+        console.log("CREATE PAYMENT TRANSACTION NEW -- BITCOIN CASH --");
 
         // Inputs are provided as arrays of [transaction, output_index, optional redeem script]
         // associatedKeysets are provided as arrays of [path]

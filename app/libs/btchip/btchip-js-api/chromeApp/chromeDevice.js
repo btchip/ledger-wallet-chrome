@@ -15,12 +15,12 @@
 
 if (typeof chromeDevice == "undefined") {
 
-  var DEBUG = false;
+  var DEBUG = true;
   var logger = null;
 
   function debug(message) {
     if (DEBUG) {
-      //console.log(message);
+      console.log(message);
     }
     if (logger == null)
       logger = new ledger.utils.ApduLogger("APDU", DEBUG);
