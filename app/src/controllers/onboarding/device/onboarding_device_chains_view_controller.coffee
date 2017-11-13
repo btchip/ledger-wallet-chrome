@@ -4,8 +4,6 @@ class @OnboardingDeviceChainsViewController extends @OnboardingViewController
     chainSelected: ".choice"
     remember: "#remember"
     advanced: "#advanced"
-    uasf: "#uasf"
-    segwit2x: "#segwit2x"
     openHelpCenter: "#help"
     recoverTool: "#recover"
 
@@ -24,13 +22,9 @@ class @OnboardingDeviceChainsViewController extends @OnboardingViewController
 
   toggleAdvanced: () ->
     if @view.advanced.is(":checked")
-      @view.uasf.show()
-      @view.segwit2x.show()
       @view.openHelpCenter.hide()
       @view.recoverTool.show()
     else
-      @view.uasf.hide()
-      @view.segwit2x.hide()
       @view.openHelpCenter.show()
       @view.recoverTool.hide()
 
@@ -40,6 +34,22 @@ class @OnboardingDeviceChainsViewController extends @OnboardingViewController
       @chainChoosen(@networks[parseInt(e.target.attributes.value.value,10)+1])
     dialog.once 'click:un_split', =>
       @chainChoosen(@networks[e.target.attributes.value.value])
+    dialog.show()
+
+  bitcoinGoldSelected: (e) ->
+    dialog = new OnboardingDeviceChainsMessageDialogViewController()
+    dialog.once 'click:split', =>
+      @chooseSegwitGold(parseInt(e.target.attributes.value.value,10)+1)
+    dialog.once 'click:un_split', =>
+      @chooseSegwitGold(e.target.attributes.value.value)
+    dialog.show()
+
+  chooseSegwitGold: (n) ->
+    dialog = new OnboardingDeviceChainsChoiceDialogViewController({title: t("onboarding.device.chains.segwit_title"), text: t('onboarding.device.chains.segwit_message'), firstChoice: t('onboarding.device.chains.segwit_legacy'), secondChoice: t('onboarding.device.chains.segwit_segwit'), cancel: t('onboarding.device.chains.segwit_cancel')})
+    dialog.once 'click:first', =>
+      @chainChoosen(@networks[n])
+    dialog.once 'click:second', =>
+      @chainChoosen(@networks[n + 1])
     dialog.show()
 
   chooseSegwit: (e) ->
@@ -62,8 +72,14 @@ class @OnboardingDeviceChainsViewController extends @OnboardingViewController
 
   onChainSelected: (e) ->
     l e
+    if @networks[e.target.attributes.value.value].name == 'bitcoin_gold_unsplit'
+      if !ledger.app.dongle.getFirmwareInformation().isUsingInputFinalizeFull()
+        @incompatible()
+      else
+        @bitcoinGoldSelected(e)
+
     if @networks[e.target.attributes.value.value].name != 'bitcoin_cash_unsplit'
-      if (ledger.app.dongle.getFirmwareInformation().getIntFirmwareVersion() >= 0x30010105 or (ledger.app.dongle.getFirmwareInformation().getArchitecture() < 0x30 and ledger.app.dongle.getFirmwareInformation().getIntFirmwareVersion() >= 0x20010004)) && (@networks[e.target.attributes.value.value].name == 'bitcoin' ||  @networks[e.target.attributes.value.value].name == 'bitcoin_segwit2x' ||@networks[e.target.attributes.value.value].name == 'litecoin')
+      if (ledger.app.dongle.getFirmwareInformation().getIntFirmwareVersion() >= 0x30010105 or (ledger.app.dongle.getFirmwareInformation().getArchitecture() < 0x30 and ledger.app.dongle.getFirmwareInformation().getIntFirmwareVersion() >= 0x20010004)) && (@networks[e.target.attributes.value.value].name == 'bitcoin' || @networks[e.target.attributes.value.value].name == 'litecoin')
         @chooseSegwit(e)
       else
         @chainChoosen(@networks[e.target.attributes.value.value])

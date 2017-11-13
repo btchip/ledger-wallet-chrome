@@ -86,6 +86,14 @@ bitcoin.networks.viacoin =
   pubKeyHash: 71
   scriptHash: 33
 
+bitcoin.networks.btcgpu =
+  magicPrefix: '\x18Bitcoin Gold Signed Message:\n'
+  bip32:
+    public: 0x0488B21E,
+    private: 0x0488ADE4
+  pubKeyHash: 38
+  scriptHash: 23
+
 ledger.bitcoin ||= {}
 ledger.bitcoin.Networks =
   bitcoin:
@@ -212,78 +220,107 @@ ledger.bitcoin.Networks =
     greyed: yes
     message: yes
 
-  bitcoin_uasf:
-    name: 'bitcoin_uasf'
+  bitcoin_gold_unsplit:
+    name: 'bitcoin_gold_unsplit'
     display_name: 'bitcoin'
-    chain: 'Bitcoin UASF'
+    chain: 'Bitcoin Gold (Main)'
     bolosAppName: 'Bitcoin'
     plural: 'bitcoins'
-    ticker: 'uasf'
-    scheme: 'bitcoin:'
+    ticker: 'btg_testnet'
+    scheme: 'bitcoingold:'
     tickerKey:
-      from: 'fromBTC'
-      to: 'toBTC'
+      from: 'fromBTG'
+      to: 'toBTG'
     bip44_coin_type: '0'
     handleSegwit: no
     isSegwitSupported: yes
     version:
-      regular: 0
-      P2SH: 5
+      regular: 38
+      P2SH: 23
       XPUB: 0x0488B21E
-    bitcoinjs: bitcoin.networks.bitcoin
-    ws_chain: 'bitcoin'
+    bitcoinjs: bitcoin.networks.btcgpu
+    ws_chain: 'btcgpu'
     dust: 5430
     handleFeePerByte: yes
+    notCompatible: yes
     greyed: yes
     message: yes
 
-  bitcoin_segwit2x:
-    name: 'bitcoin_segwit2x'
+  bitcoin_gold_unsplit_segwit:
+    name: 'bitcoin_gold_unsplit_segwit'
     display_name: 'bitcoin'
-    chain: 'Bitcoin Segwit2x'
+    chain: 'Bitcoin Gold (Main/Segwit)'
     bolosAppName: 'Bitcoin'
     plural: 'bitcoins'
-    ticker: 'segwit2x'
-    scheme: 'bitcoin:'
+    ticker: 'btg_testnet'
+    scheme: 'bitcoingold:'
     tickerKey:
-      from: 'fromBTC'
-      to: 'toBTC'
-    bip44_coin_type: '0'
-    handleSegwit: no
-    isSegwitSupported: yes
-    version:
-      regular: 0
-      P2SH: 5
-      XPUB: 0x0488B21E
-    bitcoinjs: bitcoin.networks.bitcoin
-    ws_chain: 'bitcoin'
-    dust: 5430
-    handleFeePerByte: yes
-    greyed: yes
-    message: yes
-
-  bitcoin_segwit2x_segwit:
-    name: 'bitcoin_segwit2x_segwit'
-    display_name: 'bitcoin'
-    chain: 'Bitcoin Segwit2x'
-    bolosAppName: 'Bitcoin'
-    plural: 'bitcoins'
-    ticker: 'segwit2x'
-    scheme: 'bitcoin:'
-    tickerKey:
-      from: 'fromBTC'
-      to: 'toBTC'
+      from: 'fromBTG'
+      to: 'toBTG'
     bip44_coin_type: '0'
     handleSegwit: yes
     isSegwitSupported: yes
     version:
-      regular: 0
-      P2SH: 5
+      regular: 38
+      P2SH: 23
       XPUB: 0x0488B21E
-    bitcoinjs: bitcoin.networks.bitcoin
-    ws_chain: 'bitcoin'
+    bitcoinjs: bitcoin.networks.btcgpu
+    ws_chain: 'btcgpu'
     dust: 5430
     handleFeePerByte: yes
+    notCompatible: yes
+    greyed: yes
+    message: yes
+
+  bitcoin_gold_split:
+    name: 'bitcoin_gold_split'
+    display_name: 'bitcoin'
+    chain: 'Bitcoin Gold (Split)'
+    bolosAppName: 'Bitcoin'
+    plural: 'bitcoins'
+    ticker: 'btg_testnet'
+    scheme: 'bitcoingold:'
+    tickerKey:
+      from: 'fromBTG'
+      to: 'toBTG'
+    bip44_coin_type: '156'
+    handleSegwit: no
+    isSegwitSupported: yes
+    version:
+      regular: 38
+      P2SH: 23
+      XPUB: 0x0488B21E
+    bitcoinjs: bitcoin.networks.btcgpu
+    ws_chain: 'btcgpu'
+    dust: 5430
+    handleFeePerByte: yes
+    notCompatible: yes
+    greyed: yes
+    message: yes
+
+  bitcoin_gold_split_segwit:
+    name: 'bitcoin_gold_split_segwit'
+    display_name: 'bitcoin'
+    chain: 'Bitcoin Gold (Split/Segwit)'
+    bolosAppName: 'Bitcoin'
+    plural: 'bitcoins'
+    ticker: 'btg_testnet'
+    scheme: 'bitcoingold:'
+    tickerKey:
+      from: 'fromBTG'
+      to: 'toBTG'
+    bip44_coin_type: '156'
+    handleSegwit: yes
+    isSegwitSupported: yes
+    version:
+      regular: 38
+      P2SH: 23
+      XPUB: 0x0488B21E
+    bitcoinjs: bitcoin.networks.btcgpu
+    #ws_chain: 'btcgpu'
+    dust: 5430
+    handleFeePerByte: yes
+    notCompatible: yes
     greyed: yes
     message: yes
 

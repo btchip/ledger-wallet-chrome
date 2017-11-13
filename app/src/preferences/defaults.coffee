@@ -241,14 +241,14 @@ ledger.preferences.bitcoin_cash_split =
         address: 'http://blockdozer.com/insight/tx/%s'
     discoveryGap: 20    
 
-ledger.preferences.bitcoin_segwit2x =
+ledger.preferences.bitcoin_gold_unsplit =
   Display:
     units:
       bitcoin:
-        symbol: 'BTC'
+        symbol: 'BTG'
         unit: 8
       milibitcoin:
-        symbol: 'mBTC'
+        symbol: 'mBTG'
         unit: 5
       microbitcoin:
         symbol: 'bits'
@@ -258,87 +258,73 @@ ledger.preferences.bitcoin_segwit2x =
   Coin:
     explorers:
       blockchain:
-        name: 'Blockchain.info'
-        address: 'https://blockchain.info/tx/%s'
-      blockr:
-        name: 'Blockr.io'
-        address: 'https://btc.blockr.io/tx/info/%s'
-      biteasy:
-        name: 'Biteasy.com'
-        address: 'https://www.biteasy.com/blockchain/transactions/%s'
-      insight:
-        name: 'Insight.is'
-        address: 'https://insight.bitpay.com/tx/%s'
-      blockonomics:
-        name: 'Blockonomics.co'
-        address: 'https://www.blockonomics.co/api/tx?txid=%s'
-    discoveryGap: 20  
-
-ledger.preferences.bitcoin_segwit2x_segwit =
-  Display:
-    units:
-      bitcoin:
-        symbol: 'BTC'
-        unit: 8
-      milibitcoin:
-        symbol: 'mBTC'
-        unit: 5
-      microbitcoin:
-        symbol: 'bits'
-        unit: 2
-
-  # Coin preferences
-  Coin:
-    explorers:
-      blockchain:
-        name: 'Blockchain.info'
-        address: 'https://blockchain.info/tx/%s'
-      blockr:
-        name: 'Blockr.io'
-        address: 'https://btc.blockr.io/tx/info/%s'
-      biteasy:
-        name: 'Biteasy.com'
-        address: 'https://www.biteasy.com/blockchain/transactions/%s'
-      insight:
-        name: 'Insight.is'
-        address: 'https://insight.bitpay.com/tx/%s'
-      blockonomics:
-        name: 'Blockonomics.co'
-        address: 'https://www.blockonomics.co/api/tx?txid=%s'
-    discoveryGap: 20      
-
-ledger.preferences.bitcoin_uasf =
-  Display:
-    units:
-      bitcoin:
-        symbol: 'BTC'
-        unit: 8
-      milibitcoin:
-        symbol: 'mBTC'
-        unit: 5
-      microbitcoin:
-        symbol: 'bits'
-        unit: 2
-
-  # Coin preferences
-  Coin:
-    explorers:
-      blockchain:
-        name: 'Blockchain.info'
-        address: 'https://blockchain.info/tx/%s'
-      blockr:
-        name: 'Blockr.io'
-        address: 'https://btc.blockr.io/tx/info/%s'
-      biteasy:
-        name: 'Biteasy.com'
-        address: 'https://www.biteasy.com/blockchain/transactions/%s'
-      insight:
-        name: 'Insight.is'
-        address: 'https://insight.bitpay.com/tx/%s'
-      blockonomics:
-        name: 'Blockonomics.co'
-        address: 'https://www.blockonomics.co/api/tx?txid=%s'
+        name: 'btgexp.com'
+        address: 'http://btgexp.com/tx/%s'
     discoveryGap: 20    
+
+ledger.preferences.bitcoin_gold_unsplit_segwit =
+  Display:
+    units:
+      bitcoin:
+        symbol: 'BTG'
+        unit: 8
+      milibitcoin:
+        symbol: 'mBTG'
+        unit: 5
+      microbitcoin:
+        symbol: 'bits'
+        unit: 2
+
+  # Coin preferences
+  Coin:
+    explorers:
+      blockchain:
+        name: 'btgexp.com'
+        address: 'http://btgexp.com/tx/%s'
+    discoveryGap: 20    
+
+ledger.preferences.bitcoin_gold_split =
+  Display:
+    units:
+      bitcoin:
+        symbol: 'BTG'
+        unit: 8
+      milibitcoin:
+        symbol: 'mBTG'
+        unit: 5
+      microbitcoin:
+        symbol: 'bits'
+        unit: 2
+
+  # Coin preferences
+  Coin:
+    explorers:
+      blockchain:
+        name: 'btgexp.com'
+        address: 'http://btgexp.com/tx/%s'
+    discoveryGap: 20    
+
+ledger.preferences.bitcoin_gold_split_segwit =
+  Display:
+    units:
+      bitcoin:
+        symbol: 'BTG'
+        unit: 8
+      milibitcoin:
+        symbol: 'mBTG'
+        unit: 5
+      microbitcoin:
+        symbol: 'bits'
+        unit: 2
+
+  # Coin preferences
+  Coin:
+    explorers:
+      blockchain:
+        name: 'btgexp.com'
+        address: 'http://btgexp.com/tx/%s'
+    discoveryGap: 20    
+
 
 ledger.preferences.testnet =
   Display:

@@ -10,7 +10,7 @@
     <p class="medium-indication"><b><%- t 'onboarding.device.chains.message4'%></b><p>
     <div class="chain-selector">
       <% for chain,i in @networks : %>
-        <% if chain.name != "bitcoin_cash_split" and chain.name != "bitcoin_recover" and chain.name != "bitcoin_segwit" and chain.name != "bitcoin_segwit2x_segwit": %>
+        <% if chain.name != "bitcoin_cash_split" and chain.name != "bitcoin_recover" and chain.name != "bitcoin_segwit" and chain.name != "bitcoin_gold_unsplit_segwit" and chain.name != "bitcoin_gold_split" and chain.name != "bitcoin_gold_split_segwit" : %>
           <a id="<%= chain.ticker %>"
             class="choice <% if chain.greyed is yes: %>
               cancel-rounded-button
