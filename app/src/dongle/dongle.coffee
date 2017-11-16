@@ -742,9 +742,9 @@ class @ledger.dongle.Dongle extends EventEmitter
           .concat(ledger.Amount.fromSatoshi(0).toScriptByteString())
           .concat(OpReturnScript(data))
       task = =>
-        if ledger.config.network.ticker == 'abc'
+        if ledger.config.network.ticker == 'abc' || (ledger.config.network.ticker == 'btg' && !ledger.config.network.handleSegwit)
           promise = @_btchip.createPaymentTransactionNewBIP143_async(
-            false,
+            false, false,
             inputs, associatedKeysets, changePath,
             outputScript,
             lockTime && new ByteString(Convert.toHexInt(lockTime), HEX),
@@ -755,7 +755,7 @@ class @ledger.dongle.Dongle extends EventEmitter
         else  
           if ledger.config.network.handleSegwit
             promise = @_btchip.createPaymentTransactionNewBIP143_async(
-              true,
+              true, ledger.config.network.ticker == 'btg', 
               inputs, associatedKeysets, changePath,
               outputScript,
               lockTime && new ByteString(Convert.toHexInt(lockTime), HEX),
